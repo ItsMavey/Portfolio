@@ -1,0 +1,38 @@
+:root {
+  --background:#0D1117;
+  --dark: #161B22;
+  --light: #E6EDF3;
+  --dark-accent: #298373;
+  --light-accent: #10B981;
+}
+
+* {
+  font-family: 'Space Grotesk', sans-serif;
+  transition: all 700ms ease-in-out;
+}
+
+/* Reset some default styles */
+
+body {
+  background: var(--background);
+  color: var(--light);
+
+
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--light);
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
