@@ -1,0 +1,97 @@
+header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+
+    color: var(--light);
+}
+
+.spiralContainer {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    width: 100%;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes spiral {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
+
+.spiralHoverHitBox {
+    position: absolute;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: max-content;
+    height: 200px;
+
+    padding: 10px
+}
+
+
+.spiral {
+    position: absolute;
+    display: flex;
+}
+
+.spiral-char {
+    font-size: 1.5rem;
+    padding: 10px;
+
+    user-select: none;
+
+    transform: translateY(calc(sin(var(--angle)) * 75px)) scale(calc(cos(var(--angle)) * -0.5 + 0.55));
+    animation: spiral 7000ms steps(360) infinite forwards;
+
+    text-shadow: 0 0 2px var(--light-accent), 0 0 2px var(--light-accent);
+}
+
+.spiralHoverHitBox:hover .spiral-char {
+    opacity: 0;
+}
+
+
+.spiralContainer h1{
+
+    pointer-events: none;
+
+    font-size: 3rem;
+    font-weight: 700;
+    text-shadow: 0 0 10px var(--dark), 0 0 10px var(--dark);
+
+    color: var(--dark);
+
+    transition: all 500ms ease-in-out;
+}
+
+.spiralHoverHitBox:hover + h1  {
+    color: var(--light-accent);
+}
+
+

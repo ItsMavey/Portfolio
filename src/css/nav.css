@@ -59,9 +59,6 @@ nav {
     overflow: hidden;
 }
 
-nav header pre {
-    font-size: 2rem;
-}
 nav svg {
     position: absolute;
 
@@ -84,13 +81,32 @@ nav.active {
 }
 
 nav .header {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     width: 110%;
+    border-bottom: none;
+}
 
-    border-bottom: var(--light) 1px solid;
+nav .header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    width: 0;
+    background: var(--light);
+
+    transition: width 1300ms ease-in-out;
+
+}
+
+nav.active .header::after {
+    width: 100%;
+
+    transition: width 1300ms ease-in-out;
+    transition-delay: 500ms;
 }
 
 nav .header pre {
@@ -127,21 +143,21 @@ nav ul li {
 }
 
 nav ul.links li:nth-child(1) {
-    transform: translateX(-50%);
-}
-
-nav ul.links li:nth-child(2) {
     transform: translateX(-75%);
 }
 
+nav ul.links li:nth-child(2) {
+    transform: translateX(-125%);
+}
+
 nav ul.links li:nth-child(3) {
-    transform: translateX(-100%);
+    transform: translateX(-175%);
 }
 
 nav.active ul.links li {
     transform: translateX(0);
     transition: all 1200ms ease-in-out;
-    transition-delay: 400ms;
+    transition-delay: 600ms;
 }
 
 nav ul li a {
@@ -222,6 +238,9 @@ nav .social-medias ul li {
 
     font-size: 1rem;
     color: var(--light);
+
+    opacity: 0;
+    transition: opacity 500ms ease-in-out;
 }
 
 nav .social-medias ul li a {
@@ -247,4 +266,17 @@ nav ul li:hover a {
     background-position: 0;
 }
 
+
+nav.active .social-medias ul li{
+    opacity: 1;
+    transition-delay: 700ms;
+}
+
+nav.active .social-medias ul li:nth-child(2){
+    transition-delay: 900ms;
+}
+
+nav.active .social-medias ul li:nth-child(3) {
+    transition-delay: 1100ms;
+}
 /* End Navigation */

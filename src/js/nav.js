@@ -1,5 +1,5 @@
 const nav = document.querySelector('nav');
-const mask = document.querySelector('#mask');
+const mask = document.getElementById('mask');
 const navWidth  = nav.getBoundingClientRect().width;
 const navHeight = window.innerHeight;
 

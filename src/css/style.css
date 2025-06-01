@@ -1,6 +1,6 @@
 :root {
-  --background:#0D1117;
-  --dark: #161B22;
+  --background: #161B22 ;
+  --dark: #0D1117;
   --light: #E6EDF3;
   --dark-accent: #298373;
   --light-accent: #10B981;
@@ -35,4 +35,36 @@ button {
 h1 {
   font-size: 2.5rem;
   font-weight: 700;
+}
+
+
+#name {
+  position: fixed;
+  top: 10px;
+  right: 50px;
+
+  z-index: 999;
+}
+
+#name h3 {
+  font-size: 2rem;
+  font-family: 'Great Vibes', cursive;
+  background-image: linear-gradient(
+          to right,
+          var(--light) 50%,
+          var(--light-accent) 50%
+  );
+
+  background-size: 200% 100%;
+  background-position: 0 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  transition: all 500ms ease-in-out;
+
+}
+
+#name:hover h3 {
+  background-position: 100% 0;
+  font-size: 2.2rem;
 }
