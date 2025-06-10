@@ -2,7 +2,7 @@
 
 const word = "Software Engineering Student";
 const length = word.length;
-const animationDuration = 4000;
+const animationDuration = 5000;
 
 word.split("").forEach((char, i) => {
     function createElement(offset) {
@@ -14,7 +14,7 @@ word.split("").forEach((char, i) => {
     }
 
     document.getElementById("spiral").append(createElement(0));
-    document.getElementById("spiral2").append(createElement(-1 * (animationDuration/2)));
+    document.getElementById("spiral2").append(createElement(-1 * (animationDuration/3)));
 });
 
 document.querySelectorAll(".spiral-char").forEach((char) => {})

@@ -67,13 +67,13 @@ header {
     user-select: none;
 
     transform: translateY(calc(sin(var(--angle)) * 75px)) scale(calc(cos(var(--angle)) * -0.5 + 0.55));
-    animation: spiral 7000ms steps(360) infinite forwards;
+    animation: spiral 6000ms steps(360) infinite;
 
     text-shadow: 0 0 2px var(--light-accent), 0 0 2px var(--light-accent);
 }
 
 .spiralHoverHitBox:hover .spiral-char {
-    opacity: 0;
+    opacity: 0.2;
 }
 
 
