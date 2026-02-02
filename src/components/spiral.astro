@@ -1,0 +1,120 @@
+---
+const word = "Software Engineering Student";
+---
+
+<header>
+    <div class="spiralContainer">
+        <div class="spiralHoverHitBox">
+            <div class="spiral" id="spiral"></div>
+            <div class="spiral" id="spiral2"></div>
+        </div>
+        <h1>Adam Ousmer</h1>
+    </div>
+</header>
+
+<style>
+
+    .spiralContainer {
+        position: relative;
+
+        top: 0;
+        left: 0;
+
+        display: flex;
+        flex-direction: column;
+
+        justify-content: center;
+        align-items: center;
+
+        height: 100%;
+        width: 100%;
+    }
+
+    @property --angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+    }
+
+    @keyframes spiral {
+        from {
+            --angle: 0deg;
+        }
+        to {
+            --angle: 360deg;
+        }
+    }
+
+    .spiralHoverHitBox {
+        position: absolute;
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        width: max-content;
+        height: 200px;
+
+        padding: 10px;
+    }
+
+    .spiral {
+        position: absolute;
+        display: flex;
+    }
+
+    :global(.spiral-char) {
+        font-size: 1.5rem;
+        padding: 10px;
+
+        user-select: none;
+
+        transform: translateY(calc(sin(var(--angle)) * 75px)) scale(calc(cos(var(--angle)) * -0.5 + 0.55));
+        animation: spiral 6000ms steps(360) infinite;
+
+        text-shadow: 0 0 2px var(--text-main), 0 0 2px var(--text-main);
+    }
+
+    .spiralHoverHitBox:hover :global(.spiral-char) {
+        opacity: 0.2;
+    }
+
+    .spiralContainer h1 {
+        pointer-events: none;
+
+        font-size: 3rem;
+        font-weight: 700;
+        text-shadow: 0 0 10px var(--dark), 0 0 10px var(--dark);
+
+        color: var(--dark);
+
+        transition: all 500ms ease-in-out;
+    }
+
+    .spiralHoverHitBox:hover + h1 {
+        color: var(--light-accent);
+    }
+</style>
+
+<script define:vars={{ word }}>
+    // Spiral Animation
+    const length = word.length;
+    const animationDuration = 5000;
+
+    word.split("").forEach((char, i) => {
+        function createElement(offset) {
+            const div = document.createElement("div");
+            div.innerHTML = char === " " ? "&nbsp;" : char;
+            div.className = "spiral-char";
+            div.style.animationDelay = `-${i * (animationDuration / length) - offset}ms`;
+            return div;
+        }
+
+        document.getElementById("spiral").append(createElement(0));
+        document.getElementById("spiral2").append(createElement(-1 * (animationDuration / 3)));
+    });
+
+    // Adjust the hover Hitbox width
+    document.querySelector(".spiralHoverHitBox").style.width =
+        `${document.getElementById("spiral").getBoundingClientRect().width}px`;
+</script>
