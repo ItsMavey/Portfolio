@@ -1,43 +1,47 @@
-# Astro Starter Kit: Minimal
 
-```sh
-bun create astro@latest -- --template minimal
-```
+<!-- PROJECT LOGO -->
+<div align="center">
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+  <a href="https://github.com/ItsMavey/ItsBagelBot">
+    
+  </a>
 
-## 🚀 Project Structure
+<h3 align="center">Portfolio</h3>
 
-Inside of your Astro project, you'll see the following folders and files:
+<br />
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+[![Email](https://img.shields.io/badge/contact%40itsmavey.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:contact@itsmavey.com)
+[![GitHub](https://img.shields.io/badge/ItsMavey-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ItsMavey)
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+</div>
 
-Any static assets, like images, can be placed in the `public/` directory.
+***
 
-## 🧞 Commands
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+  </ol>
+</details>
 
-All commands are run from the root of the project, from a terminal:
+***
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
+## About The Project
 
-## 👀 Want to learn more?
+My personal portfolio
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+***
+
+## Contact
+
+ItsMavey - [GitHub](https://github.com/ItsMavey) - [Email](mailto:contact@itsmavey.com)
+
+***
+
+## Acknowledgements
+
+README template inspired by [othneildrew/Best-README-Template](https://github.com/othneildrew/Best-README-Template)
