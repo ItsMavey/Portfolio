@@ -9,6 +9,37 @@
     --border-color: #1f2937;
 }
 
+* {
+    box-sizing: border-box;
+    font-family: 'Space Mono', sans-serif;
+    scroll-behavior: smooth;
+}
+
+
+/* Reset default styles */
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 body {
     background-color: var(--bg-color);
     color: var(--text-main);
@@ -16,8 +47,6 @@ body {
     padding: 0;
 
     -webkit-overflow-scrolling: touch;
-
-    height: 3000vh;
 }
 
 header {
@@ -30,4 +59,14 @@ header {
     height: 100vh;
 
     color: var(--text-main);
+}
+
+
+.home-container {
+    position: fixed;
+    top: 10px;
+    right: 100px;
+    width: 75px;
+    height: 75px;
+    z-index: 1000;
 }

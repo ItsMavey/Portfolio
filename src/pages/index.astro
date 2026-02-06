@@ -6,17 +6,52 @@ import Home from '../components/HomeButton.astro';
 ---
 
 
-<Layout title="Your Page Title">
-    <Home/>
-
+<Layout title="Adam Ousmer - Software Engineering Student">
 
     <header>
         <Nodes/>
+
+        <h1>Adam Ousmer</h1>
+        <h2>Software Engineering Student at Concordia University</h2>
+
+        <h3>Website in development</h3>
     </header>
 
-
     <main>
-        <h2>Welcome to My Website</h2>
-        <p>This is the main content of the page.</p>
     </main>
 </Layout>
+
+
+<style>
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    header h1 {
+        font-size: 3rem;
+        margin: 0.5rem 0;
+        color: var(--text-main);
+    }
+
+    header h2 {
+        font-size: 1.5rem;
+        margin: 0.5rem 0;
+        font-weight: 400;
+        color: var(--text-main);
+    }
+
+    header h3 {
+        font-size: 1rem;
+        font-family: 'Space Mono', monospace;
+        margin: 1rem 0;
+        font-weight: 400;
+        color: var(--text-muted);
+    }
+</style>

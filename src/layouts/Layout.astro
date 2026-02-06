@@ -1,4 +1,6 @@
 ---
+import Home from '../components/HomeButton.astro';
+
 import {ClientRouter} from 'astro:transitions';
 import '../styles/style.css';
 
@@ -61,6 +63,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <ClientRouter/>
 </head>
 <body>
+
+    <a class="home-container" href="/">
+        <Home/>
+    </a>
+
     <slot/>
 
     <script>

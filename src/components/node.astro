@@ -9,7 +9,7 @@ interface Props {
 }
 
 const {
-    nodeCount = 75,
+    nodeCount = 100,
     connectDistance = 120,
     nodeSpeed = 0.3,
     returnSpeed = 0.02,
@@ -33,7 +33,9 @@ const {
 </style>
 
 <script define:vars={{nodeCount, connectDistance, nodeSpeed, returnSpeed, pointerRadius, repulsionForce}}>
-    document.addEventListener('DOMContentLoaded', () => {
+    let currentBackground = null;
+
+    function initNodes() {
         const CONNECT_DISTANCE_SQ = connectDistance * connectDistance;
 
         const mouse = {
@@ -158,7 +160,6 @@ const {
             }
 
             update() {
-
                 if (mouse.isActive) {
                     const dx = this.x - mouse.x;
                     const dy = this.y - mouse.y;
@@ -174,7 +175,7 @@ const {
 
                         this.vx += nx * force;
                         this.vy += ny * force;
-                    } else { // Out of range, return to base velocity
+                    } else {
                         this.vx += (this.baseVx - this.vx) * returnSpeed;
                         this.vy += (this.baseVy - this.vy) * returnSpeed;
                     }
@@ -185,7 +186,7 @@ const {
 
                 if (this.x < 0 || this.x > this.canvas.width) {
                     this.vx *= -1;
-                    this.baseVx *= -1; // if not reversed, the node stays on the wall
+                    this.baseVx *= -1;
                     this.x = this.x < 0 ? 0 : this.canvas.width;
                 }
                 if (this.y < 0 || this.y > this.canvas.height) {
@@ -201,14 +202,11 @@ const {
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
                 ctx.fill();
             }
-
-
         }
 
         class Connection {
             constructor(canvas) {
                 this.canvas = canvas;
-
                 this.ctx = canvas.getContext('2d', {
                     alpha: false, desynchronized: true
                 });
@@ -216,7 +214,6 @@ const {
                 this.animationId = null;
                 this.observer = null;
                 this.isVisible = true;
-
                 this.queryResults = [];
                 this.searchRange = new Rectangle(0, 0, connectDistance, connectDistance);
 
@@ -225,7 +222,6 @@ const {
 
                 const styles = getComputedStyle(document.documentElement);
                 this.nodeColor = styles.getPropertyValue('--deep-green').trim() || '#22c55e';
-
 
                 this.lastTime = performance.now();
                 this.targetFPS = 60;
@@ -316,7 +312,6 @@ const {
                 this.lastTime = currentTime - (elapsed % this.frameInterval);
 
                 this.ctx.clearRect(0, 0, this.width, this.height);
-
                 this.qTree.clear();
 
                 for (let i = 0; i < this.nodes.length; i++) {
@@ -327,7 +322,6 @@ const {
                 }
 
                 this.drawConnections();
-
                 this.animationId = requestAnimationFrame(this.animate.bind(this));
             }
 
@@ -389,9 +383,7 @@ const {
                 if (this.observer) this.observer.disconnect();
             }
 
-
             setupMouseHandlers() {
-
                 if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
                     return;
                 }
@@ -403,13 +395,12 @@ const {
                     mouse.x = event.clientX - rect.left;
                     mouse.y = event.clientY - rect.top;
                     mouse.isActive = true;
+
+                    clearTimeout(mouseTimeout);
+                    mouseTimeout = setTimeout(() => {
+                        mouse.isActive = false;
+                    }, 100);
                 });
-
-                clearTimeout(mouseTimeout);
-
-                mouseTimeout = setTimeout(() => {
-                    mouse.isActive = false;
-                }, 100);
 
                 document.addEventListener('mouseleave', () => {
                     mouse.isActive = false;
@@ -420,11 +411,23 @@ const {
 
         const canvas = document.getElementById('nodes');
         if (canvas) {
-            const background = new Connection(canvas);
+            // Destroy previous instance if it exists
+            if (currentBackground) {
+                currentBackground.destroy();
+            }
 
-            document.addEventListener('astro:before-preparation', () => {
-                background.destroy();
-            });
+            currentBackground = new Connection(canvas);
+        }
+    }
+
+    // Run on initial page load and after every navigation
+    document.addEventListener('astro:page-load', initNodes);
+
+    // Clean up before navigation
+    document.addEventListener('astro:before-preparation', () => {
+        if (currentBackground) {
+            currentBackground.destroy();
+            currentBackground = null;
         }
     });
 </script>
