@@ -1,8 +1,8 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../layouts/layout.astro';
 import Nodes from '../components/node.astro';
 
-import Home from '../components/HomeButton.astro';
+import ButtonLink from '../components/buttonlink.astro';
 ---
 
 
@@ -15,6 +15,14 @@ import Home from '../components/HomeButton.astro';
         <h2>Software Engineering Student at Concordia University</h2>
 
         <h3>Website in development</h3>
+
+
+        <div>
+            <ButtonLink href="/contact" text="Contact me" width="150px" height="40px"/>
+            <ButtonLink href="/contact" text="Projects" width="150px" height="40px"/>
+        </div>
+
+
     </header>
 
     <main>
@@ -53,5 +61,11 @@ import Home from '../components/HomeButton.astro';
         margin: 1rem 0;
         font-weight: 400;
         color: var(--text-muted);
+    }
+
+    header div {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
     }
 </style>

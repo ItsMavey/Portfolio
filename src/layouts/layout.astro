@@ -1,5 +1,6 @@
 ---
-import Home from '../components/HomeButton.astro';
+import Homebutton from '../components/homebutton.astro';
+import Nav  from '../components/nav.astro';
 
 import {ClientRouter} from 'astro:transitions';
 import '../styles/style.css';
@@ -64,11 +65,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 </head>
 <body>
 
+    <Nav />
+
     <a class="home-container" href="/">
-        <Home/>
+        <Homebutton/>
     </a>
 
     <slot/>
+
+    <footer>
+        <p>© {new Date().getFullYear()} Adam Ousmer. All rights reserved.</p>
+    </footer>
 
     <script>
         import Lenis from '@studio-freight/lenis'

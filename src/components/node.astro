@@ -29,6 +29,8 @@ const {
         height: 100%;
         z-index: -1;
         pointer-events: auto;
+
+        background: var(--bg-color);
     }
 </style>
 
@@ -179,6 +181,9 @@ const {
                         this.vx += (this.baseVx - this.vx) * returnSpeed;
                         this.vy += (this.baseVy - this.vy) * returnSpeed;
                     }
+                } else { // Needed for when the mouse leaves the canvas or stops moving
+                    this.vx += (this.baseVx - this.vx) * returnSpeed;
+                    this.vy += (this.baseVy - this.vy) * returnSpeed;
                 }
 
                 this.x += this.vx;
@@ -411,7 +416,6 @@ const {
 
         const canvas = document.getElementById('nodes');
         if (canvas) {
-            // Destroy previous instance if it exists
             if (currentBackground) {
                 currentBackground.destroy();
             }
@@ -420,10 +424,8 @@ const {
         }
     }
 
-    // Run on initial page load and after every navigation
     document.addEventListener('astro:page-load', initNodes);
 
-    // Clean up before navigation
     document.addEventListener('astro:before-preparation', () => {
         if (currentBackground) {
             currentBackground.destroy();
