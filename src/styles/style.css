@@ -11,7 +11,7 @@
 
 * {
     box-sizing: border-box;
-    font-family: 'Space Mono', sans-serif;
+    font-family: 'Space Mono', monospace;
     scroll-behavior: smooth;
 }
 

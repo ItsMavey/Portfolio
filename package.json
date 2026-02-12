@@ -13,6 +13,7 @@
     "@fontsource/space-grotesk": "^5.2.10",
     "@fontsource/space-mono": "^5.2.9",
     "@studio-freight/lenis": "^1.0.42",
-    "astro": "^5.17.1"
+    "astro": "^5.17.2",
+    "motion": "^12.33.0"
   }
 }
