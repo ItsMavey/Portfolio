@@ -1,0 +1,216 @@
+---
+import Layout from '../../layouts/layout.astro';
+import Nodes from '../../components/node.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout title="Blog - Adam Ousmer">
+    <div class="fixed-background" data-parallax="0.05">
+        <Nodes/>
+    </div>
+
+    <header class="blog-header">
+        <div class="header-content" data-parallax="0.3">
+            <h1>My Blog</h1>
+            <p>Projects, Processes and deep dives.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="posts-grid">
+            {posts.map((post) => (
+                <a href={`/blog/${post.slug}`} class="post-card group">
+                    <div class="card-image-container">
+                        {post.data.heroImage && (
+                            <div class="card-image" style={`background-image: url('${post.data.heroImage}')`}></div>
+                        )}
+                        <div class="card-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="date">
+                            {post.data.pubDate.toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric'
+                            })}
+                        </div>
+                        <h2>{post.data.title}</h2>
+                        <p>{post.data.description}</p>
+                        <div class="read-more">Read Article <span>→</span></div>
+                    </div>
+                </a>
+            ))}
+        </div>
+    </main>
+</Layout>
+
+<style>
+    .fixed-background {
+        position: fixed;
+        top: -10vh;
+        left: -10vw;
+        width: 120vw;
+        height: 120vh;
+        z-index: -10;
+        pointer-events: none;
+        will-change: transform;
+    }
+
+    .blog-header {
+        position: relative;
+        height: 50vh;
+        min-height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .header-content {
+        z-index: 10;
+    }
+
+    .header-content h1 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: clamp(3rem, 6vw, 4.5rem);
+        color: var(--text-main);
+        margin: 0 0 1rem 0;
+    }
+
+    .header-content p {
+        font-family: 'Space Mono', monospace;
+        font-size: 1.2rem;
+        color: var(--text-muted);
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 2rem 8rem 2rem;
+    }
+
+    .posts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: 3rem;
+    }
+
+    .post-card {
+        display: flex;
+        flex-direction: column;
+        background: rgba(17, 24, 39, 0.4);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        text-decoration: none;
+        height: 100%;
+    }
+
+    .post-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(16, 185, 129, 0.4);
+        box-shadow: 0 15px 35px -15px rgba(16, 185, 129, 0.3);
+    }
+
+    .card-image-container {
+        position: relative;
+        width: 100%;
+        height: 220px;
+        overflow: hidden;
+    }
+
+    .card-image {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        transition: transform 0.6s ease;
+    }
+
+    .post-card:hover .card-image {
+        transform: scale(1.05);
+    }
+
+    .card-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgba(17, 24, 39, 1), transparent);
+    }
+
+    .card-content {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .date {
+        font-family: 'Space Mono', monospace;
+        color: var(--primary-green);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 0.75rem;
+    }
+
+    .card-content h2 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.6rem;
+        color: var(--text-main);
+        margin: 0 0 1rem 0;
+        transition: color 0.3s ease;
+    }
+
+    .post-card:hover .card-content h2 {
+        color: #fff;
+    }
+
+    .card-content p {
+        color: var(--text-muted);
+        line-height: 1.6;
+        margin: 0 0 2rem 0;
+        flex-grow: 1;
+    }
+
+    .read-more {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-muted);
+        font-family: 'Space Mono', monospace;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+        margin-top: auto;
+    }
+
+    .post-card:hover .read-more {
+        color: var(--primary-green);
+    }
+
+    .read-more span {
+        transition: transform 0.3s ease;
+    }
+
+    .post-card:hover .read-more span {
+        transform: translateX(5px);
+    }
+
+    @media (max-width: 768px) {
+        .posts-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

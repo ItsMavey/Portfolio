@@ -65,32 +65,20 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 </head>
 <body>
 
-    <Nav />
+<Nav />
 
-    <a class="home-container" href="/">
-        <Homebutton/>
-    </a>
+<a class="home-container" href="/">
+    <Homebutton/>
+</a>
 
-    <slot/>
+<slot/>
 
-    <footer>
-        <p>© {new Date().getFullYear()} Adam Ousmer. All rights reserved.</p>
-    </footer>
+<footer>
+    <p>© {new Date().getFullYear()} Adam Ousmer. All rights reserved.</p>
+</footer>
 
-    <script>
-        import Lenis from '@studio-freight/lenis'
-
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        })
-
-        function raf(time: number) {
-            lenis.raf(time)
-            requestAnimationFrame(raf)
-        }
-
-        requestAnimationFrame(raf)
-    </script>
+<script>
+    import '../scripts/scroll.js';
+</script>
 </body>
 </html>

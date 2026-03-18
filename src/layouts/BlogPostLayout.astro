@@ -1,0 +1,239 @@
+---
+import Layout from "./layout.astro";
+import Nodes from "../components/node.astro";
+
+const { frontmatter } = Astro.props;
+const { title, description, pubDate, heroImage } = frontmatter;
+
+const dateFormatted = new Date(pubDate).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+});
+---
+
+<Layout
+    title={`${title} - Adam Ousmer`}
+    description={description}
+    image={heroImage}
+>
+    <div class="fixed-background" data-parallax="0.15">
+        <Nodes />
+    </div>
+
+    <article>
+        <div class="hero-banner-container">
+            {
+                heroImage && (
+                    <div
+                        class="banner-image"
+                        data-parallax="0.5"
+                        style={`background-image: url('${heroImage}')`}
+                    />
+                )
+            }
+            <div class="banner-gradient"></div>
+
+            <div class="hero-content" data-parallax="0.2">
+                <div class="date">{dateFormatted}</div>
+                <h1>{title}</h1>
+                {description && <p class="description">{description}</p>}
+            </div>
+        </div>
+
+        <main class="prose">
+            <slot />
+        </main>
+    </article>
+</Layout>
+
+<style>
+    .fixed-background {
+        position: fixed;
+        top: -10vh;
+        left: -10vw;
+        width: 120vw;
+        height: 120vh;
+        z-index: -10;
+        pointer-events: none;
+        will-change: transform;
+    }
+
+    .hero-banner-container {
+        position: relative;
+        width: 100%;
+        height: 70vh;
+        min-height: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .banner-image {
+        position: absolute;
+        top: -20%;
+        left: 0;
+        width: 100%;
+        height: 140%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: 1;
+        will-change: transform;
+    }
+
+    .banner-gradient {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            to bottom,
+            rgba(11, 15, 25, 0.2) 0%,
+            rgba(11, 15, 25, 0.8) 60%,
+            var(--bg-color) 100%
+        );
+        z-index: 2;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        padding: 0 2rem;
+        max-width: 900px;
+        margin-top: 10vh;
+    }
+
+    .date {
+        font-family: "Space Mono", monospace;
+        color: var(--primary-green);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-content h1 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(3rem, 6vw, 5rem);
+        color: var(--text-main);
+        margin: 0 0 1rem 0;
+        line-height: 1.1;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content .description {
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    /* Markdown Prose Styling */
+    .prose {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 4rem 2rem 8rem 2rem;
+        color: var(--text-main);
+        font-size: 1.15rem;
+        line-height: 1.8;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        background: rgba(11, 15, 25, 0.5);
+        border-radius: 16px;
+    }
+
+    /* Target standard markdown elements within slot */
+    :global(.prose h2) {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 2.2rem;
+        color: var(--text-main);
+        margin: 3rem 0 1.5rem 0;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.5rem;
+    }
+
+    :global(.prose h3) {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.6rem;
+        color: var(--text-main);
+        margin: 2rem 0 1rem 0;
+    }
+
+    :global(.prose p) {
+        margin-bottom: 1.5rem;
+        color: var(--text-muted);
+    }
+
+    :global(.prose img) {
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        margin: 2rem 0;
+        border: 1px solid var(--border-color);
+    }
+
+    :global(.prose a) {
+        color: var(--primary-green);
+        text-decoration: none;
+        border-bottom: 1px dashed var(--primary-green);
+        transition: all 0.2s ease;
+    }
+
+    :global(.prose a:hover) {
+        color: #fff;
+        border-bottom-color: #fff;
+    }
+
+    :global(.prose ul),
+    :global(.prose ol) {
+        margin-bottom: 1.5rem;
+        padding-left: 1.5rem;
+        color: var(--text-muted);
+    }
+
+    :global(.prose li) {
+        margin-bottom: 0.5rem;
+    }
+
+    :global(.prose blockquote) {
+        border-left: 4px solid var(--primary-green);
+        margin: 2rem 0;
+        padding: 1rem 2rem;
+        background: rgba(16, 185, 129, 0.05);
+        border-radius: 0 8px 8px 0;
+        font-style: italic;
+    }
+
+    :global(.prose blockquote p) {
+        margin: 0;
+        color: var(--text-main);
+    }
+
+    :global(.prose code) {
+        font-family: "Space Mono", monospace;
+        background: rgba(17, 24, 39, 0.8);
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        font-size: 0.9em;
+        color: #e5e7eb;
+    }
+
+    :global(.prose pre) {
+        background: #111827 !important;
+        padding: 1.5rem;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        overflow-x: auto;
+        margin: 2rem 0;
+    }
+
+    :global(.prose pre code) {
+        background: transparent;
+        padding: 0;
+        font-size: 0.95rem;
+    }
+</style>
