@@ -1,15 +1,14 @@
 ---
-import Homebutton from '../components/homebutton.astro';
-import Nav  from '../components/nav.astro';
+import Homebutton from "../components/homebutton.astro";
+import Nav from "../components/nav.astro";
 
-import {ClientRouter} from 'astro:transitions';
-import '../styles/style.css';
+import { ClientRouter } from "astro:transitions";
+import "../styles/style.css";
 
-
-import '@fontsource/space-grotesk/400.css';
-import '@fontsource/space-grotesk/700.css';
-import '@fontsource/space-mono/400.css';
-import '@fontsource/space-mono/700.css';
+import "@fontsource/space-grotesk/400.css";
+import "@fontsource/space-grotesk/700.css";
+import "@fontsource/space-mono/400.css";
+import "@fontsource/space-mono/700.css";
 
 interface Props {
     title: string;
@@ -20,65 +19,65 @@ interface Props {
 const {
     title,
     description = "Software Engineering Student at Concordia University.",
-    image = "/og-image.png"
+    image = "/og-image.png",
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="generator" content={Astro.generator}/>
-    <meta name="theme-color" content="#0b0f19"/>
-    <link rel="icon" type="image/webp" href="/favicon.webp"/>
-    <link rel="apple-touch-icon" href="/favicon.webp"/>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="theme-color" content="#0b0f19" />
+        <link rel="icon" type="image/webp" href="/favicon.webp" />
+        <link rel="apple-touch-icon" href="/favicon.webp" />
 
-    <!-- Primary Meta Tags -->
+        <!-- Primary Meta Tags -->
 
-    <title>{title}</title>
-    <meta name="title" content={title}/>
-    <meta name="description" content={description}/>
-    <link rel="canonical" href={canonicalURL}/>
-    <link rel="sitemap" href="/sitemap-index.xml"/>
+        <title>{title}</title>
+        <meta name="title" content={title} />
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonicalURL} />
+        <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <!-- Open Graph / Facebook -->
+        <!-- Open Graph / Facebook -->
 
-    <meta property="og:type" content="website"/>
-    <meta property="og:url" content={Astro.url}/>
-    <meta property="og:title" content={title}/>
-    <meta property="og:description" content={description}/>
-    <meta property="og:image" content={new URL(image, Astro.url)}/>
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={Astro.url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={new URL(image, Astro.url)} />
 
-    <!-- Twitter -->
+        <!-- Twitter -->
 
-    <meta property="twitter:card" content="summary_large_image"/>
-    <meta property="twitter:url" content={Astro.url}/>
-    <meta property="twitter:title" content={title}/>
-    <meta property="twitter:description" content={description}/>
-    <meta property="twitter:image" content={new URL(image, Astro.url)}/>
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={Astro.url} />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
+        <ClientRouter />
+    </head>
+    <body>
+        <Nav />
 
-    <ClientRouter/>
-</head>
-<body>
+        <a class="home-container" href="/">
+            <Homebutton />
+        </a>
 
-<Nav />
+        <slot />
 
-<a class="home-container" href="/">
-    <Homebutton/>
-</a>
+        <footer>
+            <p>
+                © {new Date().getFullYear()} Adam Ousmer. All rights reserved.
+            </p>
+        </footer>
 
-<slot/>
-
-<footer>
-    <p>© {new Date().getFullYear()} Adam Ousmer. All rights reserved.</p>
-</footer>
-
-<script>
-    import '../scripts/scroll.js';
-</script>
-</body>
+        <script>
+            import "../scripts/scroll.js";
+        </script>
+    </body>
 </html>

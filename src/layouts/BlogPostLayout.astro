@@ -17,7 +17,7 @@ const dateFormatted = new Date(pubDate).toLocaleDateString("en-US", {
     description={description}
     image={heroImage}
 >
-    <div class="fixed-background" data-parallax="0.15">
+    <div class="fixed-background">
         <Nodes />
     </div>
 
@@ -27,7 +27,6 @@ const dateFormatted = new Date(pubDate).toLocaleDateString("en-US", {
                 heroImage && (
                     <div
                         class="banner-image"
-                        data-parallax="0.5"
                         style={`background-image: url('${heroImage}')`}
                     />
                 )
@@ -46,6 +45,8 @@ const dateFormatted = new Date(pubDate).toLocaleDateString("en-US", {
         </main>
     </article>
 </Layout>
+
+<script src="../scripts/copy-code.js"></script>
 
 <style>
     .fixed-background {
@@ -228,12 +229,51 @@ const dateFormatted = new Date(pubDate).toLocaleDateString("en-US", {
         border-radius: 8px;
         border: 1px solid var(--border-color);
         overflow-x: auto;
-        margin: 2rem 0;
+        margin: 0;
     }
 
     :global(.prose pre code) {
         background: transparent;
         padding: 0;
         font-size: 0.95rem;
+    }
+
+    /* Code block copy button */
+    :global(.code-block-wrapper) {
+        position: relative;
+        margin: 2rem 0;
+    }
+
+    :global(.copy-code-btn) {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        background: rgba(31, 41, 55, 0.8);
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        color: var(--text-muted);
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+        z-index: 5;
+    }
+
+    :global(.code-block-wrapper:hover .copy-code-btn) {
+        opacity: 1;
+    }
+
+    :global(.copy-code-btn:hover) {
+        background: rgba(31, 41, 55, 1);
+        color: var(--text-main);
+    }
+
+    :global(.copy-code-btn.copied) {
+        color: var(--primary-green);
+        opacity: 1;
     }
 </style>
