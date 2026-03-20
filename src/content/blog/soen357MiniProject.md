@@ -5,7 +5,7 @@ pubDate: 2026-03-19T00:00:00-04:00
 heroImage: "/soen357MiniProject/header.png"
 ---
 
-# Project Overview
+## Project Overview
 
 For this case study I designed a plan to help a startup create a mobile app for people with chronic health conditions.
 The goal of this application is to help users with chronic health conditions manage their medications and doctor appointments.
@@ -452,6 +452,52 @@ color: var(--text-main);
 
 ## 3. Wireframing and Prototype Design
 
+To translate the research and journey map into an actual product, I developed a high-fidelity, clickable prototype in Figma.
+But before making the high-fidelity prototype, I had to make sure that my layout made sense and first started with a low-fidelity prototype
+under the format of a wireframe.
+
+### Wireframing
+
+Because the core UX strategy revolves around eliminating "click fatigue," I intentionally discarded the traditional
+bottom-navigation bar and complex, multi-page dashboards. Instead, the wireframes are built entirely around a central
+Conversational Hub to keep the cognitive load as low as possible for users like Tyler and Emma.
+
+
+<style>
+  /* --- Responsive Image CSS --- */
+  .responsive-wireframe {
+    width: 100%; /* Makes it shrink to fit mobile screens */
+    max-width: 800px; /* Stops it from getting too massive on big desktop screens */
+    height: auto; /* Crucial: Locks the aspect ratio so it doesn't stretch or squash */
+    display: block;
+    margin: 2rem auto; /* Centers the image */
+    border-radius: 12px; /* Softens the corners for a modern look */
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05); /* Adds a subtle drop shadow */
+  }
+</style>
+
+<img
+  src="/soen357MiniProject/wireframe.png"
+  alt="Low-Fidelity Wireframes showing the bot chat interface, reminder modal, and scheduling conduit"
+  class="responsive-wireframe"
+  draggable="false"
+/>
+
+
+The wireframes map out three primary views:
+
+- **The Main Conversational Hub:**
+The default chat interface where all primary interaction happens. It features standard message bubbles, a text input field, and
+Quick Action menu ("Appointment", "Logs", "Reminders") for frictionless navigation.
+
+- **The Appointment Scheduler ("App."):**
+A focused scheduling view triggered from the main chat. It clearly displays a calendar, available time slots, and a single "Confirm" button to streamline the booking process.
+
+- **The Health Logs History:**
+A dedicated tracking screen that cleanly organizes past bot interactions and logged health data chronologically by date.
+
+### Prototype
 
 <style>
   /* --- Color Palette Overlapping Dots CSS --- */
@@ -497,7 +543,7 @@ color: var(--text-main);
 
   /* Individual Colors */
   .dot-1 {
-    background-color: #061E29;
+    background-color: #091413;
     color: var(--bg-main);
     z-index: 1;
   }
@@ -524,12 +570,16 @@ color: var(--text-main);
 <div class="palette-wrapper">
   <h4 style="margin-bottom: 0.5rem; color: var(--text-main);">Core Color Palette</h4>
   <div class="palette-container">
-    <div class="color-dot dot-1">#061E29</div>
+    <div class="color-dot dot-1">#091413</div>
     <div class="color-dot dot-2">#1D546D</div>
     <div class="color-dot dot-3">#5F9598</div>
     <div class="color-dot dot-4">#F3F4F4</div>
   </div>
 </div>
+
+
+To avoid the harsh, clinical feel of pure black and white, this app utilizes a high-contrast palette of rich, layered colors. The choice of rich black and white
+also allows to reduce eye strain for applications use through out the day. These colors also provide high-contrast allowing ease to distinct different elements and texts.
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
@@ -665,6 +715,46 @@ color: #1E3A8A;
 </div>
 
 
+Inter was selected to maximize legibility within the conversational UI. It has been developed specifically for screens and provides distinct letters and numbers that allows
+the users to read fast and reduces errors. This font fulfills are goal to reduce user friction.
+
+#### Showcase
+
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/design/hTgkvzIojNTB7QVEWN9kpQ/Untitled?node-id=0-1&embed-host=share" allowfullscreen></iframe>
+
+<style>
+  /* --- Centered Responsive Video CSS --- */
+  .video-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 2rem 0;
+  }
+
+  .prototype-video {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    background-color: var(--text-muted);
+  }
+</style>
+
+<div class="video-wrapper">
+  <video class="prototype-video" autoplay loop muted playsinline>
+    <source src="/soen357MiniProject/showcase.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+
+The design for the Mid-fidelity prototype emphasizes the simplified and high-contrast UI with clear actions and basic animation.
+The basic animation allows the application to feel alive and responsive while not being overwhelming. The prototype itself is really simple
+and shows the general idea of it while still having development to be done. At least it allows to see the general idea and
+
 ## 4. Usability Testing
 
 To validate the effectiveness of the conversational bot interface and the background data conduits,
@@ -698,6 +788,31 @@ Following the testing sessions, the feedback will be synthesized to identify rec
 
 - **Iteration:** Qualitative feedback regarding the bot's prompts will be analyzed. If the users find the bot too robotic or confusing, I will iterate on the conversational design to make the prompts clearer and more human. Any visual friction, such as users missing the "Quick Reply" chips, will result in high-contrast UI adjustments in the next design iteration.
 
+
 ## 5. Reflection
+
+Completing this UX case study reinforced the importance of challenging standard design conventions to truly solve user problems.
+Initially, it is easy to assume that a health management app requires complex dashboards and manual data
+entry forms. However, developing personas like Marcus and Elena revealed a critical, overlapping pain point: "click fatigue."
+
+The most significant learning outcome from this project was realizing that the best interface is sometimes barely a traditional
+interface at all. By shifting the focus away from a website-style layout and prioritizing an active, conversational bot, the
+design drastically reduces the cognitive load on the user.
+
+Some key takeaways from this process:
+
+- **Designing for Conversation:** Creating an intuitive chat UI requires just as much structural planning as a traditional app.
+The challenge lies in making concise, natural, accurate and human prompts.
+
+- **The Value of Journey Mapping:** Mapping out a daily routine highlighted that users aren't just looking for a functional tool, but
+they are looking for peace of mind. The proactive nature of the bot changes the emotional touchpoint from a frustrating chore to a
+helpful companion.
+
+- **Automation as a UX Feature:** Relying on secure background conduits to sync clinic data taught me that good UX isn't just about
+what the user clicks, but what the user doesn't have to do.
+
+Ultimately, this project demonstrated that empathizing with the user's daily struggles is the best way to build a product
+that actually improves their quality of life. Moving forward, I plan to use the usability testing feedback to continue
+refining the conversational flows, ensuring the app remains a stress-free part of their daily routine.
 
 
