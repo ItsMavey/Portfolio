@@ -753,7 +753,8 @@ the users to read fast and reduces errors. This font fulfills are goal to reduce
 
 The design for the Mid-fidelity prototype emphasizes the simplified and high-contrast UI with clear actions and basic animation.
 The basic animation allows the application to feel alive and responsive while not being overwhelming. The prototype itself is really simple
-and shows the general idea of it while still having development to be done. At least it allows to see the general idea and
+and shows the general idea of it while still having development to be done. At least it allows to see the general idea and validates the core user flow
+before committing time to a final, high-fidelity visual design.
 
 ## 4. Usability Testing
 
