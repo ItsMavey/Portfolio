@@ -793,7 +793,7 @@ Following the testing sessions, the feedback will be synthesized to identify rec
 
 Completing this UX case study reinforced the importance of challenging standard design conventions to truly solve user problems.
 Initially, it is easy to assume that a health management app requires complex dashboards and manual data
-entry forms. However, developing personas like Marcus and Elena revealed a critical, overlapping pain point: "click fatigue."
+entry forms. However, developing personas like Tyler and Emma revealed a critical, overlapping pain point: "click fatigue."
 
 The most significant learning outcome from this project was realizing that the best interface is sometimes barely a traditional
 interface at all. By shifting the focus away from a website-style layout and prioritizing an active, conversational bot, the
