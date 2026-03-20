@@ -149,7 +149,7 @@ const dateFormatted = new Date(pubDate).toLocaleDateString("en-US", {
     }
 
     /* Target standard markdown elements within slot */
-    :global(.prose h2) {
+    :global(.prose :where(h2)) {
         font-family: "Space Grotesk", sans-serif;
         font-size: 2.2rem;
         color: var(--text-main);
@@ -158,49 +158,49 @@ const dateFormatted = new Date(pubDate).toLocaleDateString("en-US", {
         padding-bottom: 0.5rem;
     }
 
-    :global(.prose h3) {
+    :global(.prose :where(h3)) {
         font-family: "Space Grotesk", sans-serif;
         font-size: 1.6rem;
         color: var(--text-main);
         margin: 2rem 0 1rem 0;
     }
 
-    :global(.prose p) {
+    :global(.prose :where(p)) {
         margin-bottom: 1.5rem;
         color: var(--text-muted);
     }
 
-    :global(.prose img) {
+    :global(.prose :where(img)) {
         border-radius: 12px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         margin: 2rem 0;
         border: 1px solid var(--border-color);
     }
 
-    :global(.prose a) {
+    :global(.prose :where(a)) {
         color: var(--primary-green);
         text-decoration: none;
         border-bottom: 1px dashed var(--primary-green);
         transition: all 0.2s ease;
     }
 
-    :global(.prose a:hover) {
+    :global(.prose :where(a):hover) {
         color: #fff;
         border-bottom-color: #fff;
     }
 
-    :global(.prose ul),
-    :global(.prose ol) {
+    :global(.prose :where(ul)),
+    :global(.prose :where(ol)) {
         margin-bottom: 1.5rem;
         padding-left: 1.5rem;
         color: var(--text-muted);
     }
 
-    :global(.prose li) {
+    :global(.prose :where(li)) {
         margin-bottom: 0.5rem;
     }
 
-    :global(.prose blockquote) {
+    :global(.prose :where(blockquote)) {
         border-left: 4px solid var(--primary-green);
         margin: 2rem 0;
         padding: 1rem 2rem;
@@ -209,12 +209,12 @@ const dateFormatted = new Date(pubDate).toLocaleDateString("en-US", {
         font-style: italic;
     }
 
-    :global(.prose blockquote p) {
+    :global(.prose :where(blockquote p)) {
         margin: 0;
         color: var(--text-main);
     }
 
-    :global(.prose code) {
+    :global(.prose :where(code)) {
         font-family: "Space Mono", monospace;
         background: rgba(17, 24, 39, 0.8);
         padding: 0.2rem 0.4rem;
@@ -223,7 +223,7 @@ const dateFormatted = new Date(pubDate).toLocaleDateString("en-US", {
         color: #e5e7eb;
     }
 
-    :global(.prose pre) {
+    :global(.prose :where(pre)) {
         background: #111827 !important;
         padding: 1.5rem;
         border-radius: 8px;
@@ -232,7 +232,7 @@ const dateFormatted = new Date(pubDate).toLocaleDateString("en-US", {
         margin: 0;
     }
 
-    :global(.prose pre code) {
+    :global(.prose :where(pre code)) {
         background: transparent;
         padding: 0;
         font-size: 0.95rem;
