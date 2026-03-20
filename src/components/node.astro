@@ -213,7 +213,7 @@ const {
             constructor(canvas) {
                 this.canvas = canvas;
                 this.ctx = canvas.getContext('2d', {
-                    alpha: false, desynchronized: true
+                    desynchronized: true
                 });
                 this.nodes = [];
                 this.animationId = null;
