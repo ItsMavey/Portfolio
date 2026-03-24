@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/layout.astro';
-import Nodes from '../../components/node.astro';
+import Nodes from '../../components/layout/node.js';
 import SectionHeading from '../../components/SectionHeading.astro';
 import { getCollection } from 'astro:content';
 
@@ -10,9 +10,7 @@ const posts = (await getCollection('blog')).sort(
 ---
 
 <Layout title="Blog - Adam Ousmer">
-    <div class="fixed-background" data-parallax="0.05">
         <Nodes/>
-    </div>
 
     <header class="blog-header">
         <div class="header-content" data-parallax="0.3">
@@ -50,16 +48,6 @@ const posts = (await getCollection('blog')).sort(
 </Layout>
 
 <style>
-    .fixed-background {
-        position: fixed;
-        top: -10vh;
-        left: -10vw;
-        width: 120vw;
-        height: 120vh;
-        z-index: -10;
-        pointer-events: none;
-        will-change: transform;
-    }
 
     .blog-header {
         position: relative;
