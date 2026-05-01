@@ -4,9 +4,6 @@ let isBagelMode = false;
 let lastSeedTime = 0;
 
 document.addEventListener("keydown", (e) => {
-    // If we're already in bagel mode, we could either let them do it again or ignore.
-    // Let's let them trigger it multiple times for fun.
-
     // ignore special keys
     if (e.key.length !== 1) return;
 
