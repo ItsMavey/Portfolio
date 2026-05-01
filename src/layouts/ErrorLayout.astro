@@ -1,0 +1,81 @@
+---
+import Layout from './layout.astro';
+import Nodes from '../components/layout/node.astro';
+import PrimaryButton from '../components/ui/buttons/primaryButton.astro';
+
+interface Props {
+    title: string;
+    description: string;
+    errorCode: string;
+    errorMessage: string;
+}
+
+const { title, description, errorCode, errorMessage } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+    <Nodes />
+
+    <header>
+        <div class="parallax" style="--parallax-speed: 0.3">
+            <div class="page-reveal">
+                <h1>{errorCode}</h1>
+                <span class="page-title-line"></span>
+            </div>
+            <p class="page-stagger">{errorMessage}</p>
+        </div>
+    </header>
+
+    <main class="error-main page-stagger">
+        <PrimaryButton href="/" text="Return to Home" />
+    </main>
+</Layout>
+
+<script src="../scripts/page-entrance.js"></script>
+
+<style>
+    header {
+        position: relative;
+        height: 50vh;
+        min-height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    header > div {
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header h1 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: clamp(6rem, 20vw, 12rem);
+        font-weight: 700;
+        color: var(--primary-green);
+        line-height: 1;
+        letter-spacing: -0.05em;
+        margin: 0 0 1rem 0;
+    }
+
+    header p {
+        font-family: 'Space Mono', monospace;
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        max-width: 500px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    .error-main {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 0 2rem 8rem 2rem;
+        display: flex;
+        justify-content: center;
+    }
+</style>

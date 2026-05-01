@@ -41,8 +41,12 @@ const isHomepage = Astro.url.pathname === '/';
         <meta name="theme-color" content="#0b0f19" />
         <meta http-equiv="X-Content-Type-Options" content="nosniff" />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
-        <link rel="icon" type="image/webp" href="/favicon.webp" />
-        <link rel="apple-touch-icon" href="/favicon.webp" />
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="Adam" />
+        <link rel="manifest" href="/site.webmanifest" />
 
         <!-- Primary Meta Tags -->
 
@@ -61,6 +65,8 @@ const isHomepage = Astro.url.pathname === '/';
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={new URL(image, Astro.url)} />
+        <meta property="og:site_name" content="Adam Ousmer's Portfolio" />
+        <meta property="og:locale" content="en_US" />
 
         <!-- Twitter -->
 
@@ -69,6 +75,7 @@ const isHomepage = Astro.url.pathname === '/';
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
         <meta property="twitter:image" content={new URL(image, Astro.url)} />
+        <meta name="twitter:creator" content="@itsmavey" />
 
         <!-- Structured Data -->
         {isHomepage && (
@@ -109,6 +116,7 @@ const isHomepage = Astro.url.pathname === '/';
 
         <script>
             import "../scripts/scroll.js";
+            import "../scripts/easter-egg.js";
         </script>
     </body>
 </html>
