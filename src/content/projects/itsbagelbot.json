@@ -1,0 +1,16 @@
+{
+  "title": "ItsBagelBot",
+  "description": "Architected an event-driven Twitch ecosystem on self-managed Oracle Cloud k3s nodes. Enforced a Zero Trust network using Cloudflare Tunnels for edge ingress and Tailscale for authenticated developer access to an isolated private VCN database. Scaled asynchronous data flow utilizing message queues and caching.",
+  "year": 2026,
+  "tags": [
+    "Go",
+    "Watermill",
+    "Kubernetes (k3s)",
+    "Distributed Systems",
+    "Oracle Cloud",
+    "Cloudflare",
+    "Tailscale"
+  ],
+  "githubUrl": "https://github.com/itsmavey/itsbagelbot",
+  "featured": true
+}

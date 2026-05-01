@@ -1,0 +1,15 @@
+{
+  "title": "ThrustOptima",
+  "description": "ThrustOptima is a specialized software tool designed to analyze CT scans of rocket engines. It is developed to assist Space Concordia - Rocketry Division in evaluating the structural integrity of Additive Manufacturing in a Non-Destructive Evaluation context.",
+  "year": 2022,
+  "tags": [
+    "Python",
+    "CT Scans",
+    "Rocket Engine",
+    "Open CV",
+    "Lazy Loading",
+    "CLI"
+  ],
+  "githubUrl": "https://github.com/itsmavey/ThrustOptima",
+  "featured": true
+}

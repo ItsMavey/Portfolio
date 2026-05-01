@@ -1,7 +1,7 @@
 {
     "code": "SOEN 287",
     "name": "Web Programming",
-    "description": "Introduction to client-server architecture, HTML, CSS, JavaScript, and server-side scripting for building web applications.",
+    "description": "Introduction to client-server architecture, HTML, CSS, JavaScript, and server-side (PhP) scripting for building web applications.",
     "relevance": "First hands-on exposure to full-stack web development and the HTTP request lifecycle.",
     "year": 2023,
     "semester": "winter"

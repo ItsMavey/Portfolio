@@ -1,0 +1,8 @@
+{
+    "code": "SOEN 363",
+    "name": "Data Systems for Software Engineers",
+    "description": "Explores the design and implementation of data-intensive systems, covering relational database design (SQL), NoSQL solutions, data modeling, and transaction management.",
+    "relevance": "Directly supported the backend infrastructure of ItsBagelBot by providing a rigorous framework for managing persistent state and data consistency.",
+    "year": 2025,
+    "semester": "winter"
+}

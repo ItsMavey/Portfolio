@@ -7,7 +7,7 @@ interface Props {
         year: string;
         title: string;
         description: string;
-        type: "education" | "project" | "work";
+        type: "education" | "project" | "career";
         ongoing?: boolean;
     }>;
 }
@@ -16,7 +16,7 @@ const { entries } = Astro.props;
 ---
 
 <section id="timeline">
-    <SectionHeading title="Timeline" />
+    <SectionHeading title="Journey" />
 
     <div class="timeline-container">
         <div class="timeline-base-line"></div>

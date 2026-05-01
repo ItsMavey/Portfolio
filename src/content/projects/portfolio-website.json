@@ -1,8 +1,0 @@
-{
-    "title": "Portfolio Website",
-    "description": "Personal portfolio built with Astro 5. Features an interactive node canvas background, custom nav animations with Motion, and smooth scrolling via Lenis.",
-    "year": 2026,
-    "tags": ["Astro", "TypeScript", "Motion", "CSS"],
-    "githubUrl": "https://github.com/itsmavey/Portfolio",
-    "featured": false
-}

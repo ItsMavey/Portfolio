@@ -1,0 +1,14 @@
+{
+  "title": "GUIToolkit",
+  "description": "Engineered a Java-based GUI toolkit for Orisis Studio. Built and published utilizing Maven, the library provides a modular architecture for managing interactive elements, multi-panes, custom buttons, and global event listeners within plugins.",
+  "year": 2025,
+  "tags": [
+    "Java",
+    "Maven",
+    "API Development",
+    "Object-Oriented Design",
+    "Framework Development"
+  ],
+  "githubUrl": "https://github.com/itsmavey/GUIToolkit",
+  "featured": false
+}
