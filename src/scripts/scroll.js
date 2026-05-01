@@ -8,8 +8,8 @@ const lenis = new Lenis({
 
 function applyParallax() {
     const scrollY = window.scrollY;
-    document.querySelectorAll('[data-parallax]').forEach((el) => {
-        const speed = parseFloat(el.getAttribute('data-parallax'));
+    document.querySelectorAll('.parallax').forEach((el) => {
+        const speed = parseFloat(getComputedStyle(el).getPropertyValue('--parallax-speed'));
         el.style.transform = `translateY(${scrollY * speed}px)`;
     });
 }

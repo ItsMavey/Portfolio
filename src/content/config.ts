@@ -10,6 +10,33 @@ const blogCollection = defineCollection({
     }),
 });
 
+const projectsCollection = defineCollection({
+    type: 'data',
+    schema: z.object({
+        title: z.string(),
+        description: z.string(),
+        year: z.number(),
+        tags: z.array(z.string()),
+        githubUrl: z.string().url().optional(),
+        blogSlug: z.string().optional(),
+        featured: z.boolean().default(false),
+    }),
+});
+
+const coursesCollection = defineCollection({
+    type: 'data',
+    schema: z.object({
+        code: z.string(),
+        name: z.string(),
+        description: z.string(),
+        relevance: z.string(),
+        year: z.number(),
+        semester: z.enum(['fall', 'winter', 'summer']),
+    }),
+});
+
 export const collections = {
     'blog': blogCollection,
+    'projects': projectsCollection,
+    'courses': coursesCollection,
 };

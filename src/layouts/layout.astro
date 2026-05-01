@@ -1,6 +1,12 @@
 ---
+/**
+ * If any external CDN scripts are added in the future, they must include
+ * integrity="" and crossorigin="anonymous" attributes for subresource integrity.
+ */
+
 import Homebutton from "../components/ui/homebutton.astro";
 import Nav from "../components/layout/nav.astro";
+import Footer from "../components/layout/Footer.astro";
 
 import { ClientRouter } from "astro:transitions";
 import "../styles/style.css";
@@ -23,6 +29,7 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const isHomepage = Astro.url.pathname === '/';
 ---
 
 <!DOCTYPE html>
@@ -32,6 +39,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content={Astro.generator} />
         <meta name="theme-color" content="#0b0f19" />
+        <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
         <link rel="icon" type="image/webp" href="/favicon.webp" />
         <link rel="apple-touch-icon" href="/favicon.webp" />
 
@@ -40,6 +49,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         <title>{title}</title>
         <meta name="title" content={title} />
         <meta name="description" content={description} />
+        <meta name="author" content="Adam Ousmer" />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href={canonicalURL} />
         <link rel="sitemap" href="/sitemap-index.xml" />
 
@@ -59,6 +70,30 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         <meta property="twitter:description" content={description} />
         <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
+        <!-- Structured Data -->
+        {isHomepage && (
+            <script type="application/ld+json" set:html={JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Person",
+                "name": "Adam Ousmer",
+                "url": "https://adam-ousmer.dev",
+                "sameAs": [
+                    "https://github.com/itsmavey"
+                ],
+                "jobTitle": "Software Engineering Student",
+                "alumniOf": {
+                    "@type": "CollegeOrUniversity",
+                    "name": "Concordia University"
+                }
+            })} />
+        )}
+        <script type="application/ld+json" set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Adam Ousmer",
+            "url": "https://adam-ousmer.dev"
+        })} />
+
         <ClientRouter />
     </head>
     <body>
@@ -70,11 +105,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
         <slot />
 
-        <footer>
-            <p>
-                © {new Date().getFullYear()} Adam Ousmer. All rights reserved.
-            </p>
-        </footer>
+        <Footer />
 
         <script>
             import "../scripts/scroll.js";

@@ -33,10 +33,13 @@ const dateFormatted = new Date(pubDate).toLocaleDateString("en-US", {
             }
             <div class="banner-gradient"></div>
 
-            <div class="hero-content" data-parallax="0.2">
-                <div class="date">{dateFormatted}</div>
-                <h1>{title}</h1>
-                {description && <p class="description">{description}</p>}
+            <div class="hero-content parallax" style="--parallax-speed: 0.2">
+                <div class="date page-stagger">{dateFormatted}</div>
+                <div class="page-reveal">
+                    <h1>{title}</h1>
+                    <span class="page-title-line"></span>
+                </div>
+                {description && <p class="description page-stagger">{description}</p>}
             </div>
         </div>
 
@@ -47,6 +50,7 @@ const dateFormatted = new Date(pubDate).toLocaleDateString("en-US", {
 </Layout>
 
 <script src="../scripts/copy-code.js"></script>
+<script src="../scripts/page-entrance.js"></script>
 
 <style>
     .fixed-background {

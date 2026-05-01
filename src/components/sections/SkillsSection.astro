@@ -1,0 +1,170 @@
+---
+import SectionHeading from "../SectionHeading.astro";
+import SkillBadge from "../ui/SkillBadge.astro";
+
+const categories = [
+    {
+        title: "Languages",
+        skills: [
+            { name: "Python", slug: "python" },
+            { name: "Java", noIcon: true },
+            { name: "Go", slug: "go" },
+            { name: "C++", slug: "cplusplus" },
+            { name: "Prolog", noIcon: true },
+            { name: "SQL", slug: "postgresql" },
+        ],
+    },
+    {
+        title: "Frameworks",
+        skills: [
+            { name: "Astro", slug: "astro" },
+            { name: "Django", slug: "django" },
+        ],
+    },
+    {
+        title: "Infrastructure & Tools",
+        skills: [
+            { name: "Oracle Cloud", noIcon: true },
+            { name: "Kubernetes", slug: "kubernetes" },
+            { name: "Docker", slug: "docker" },
+            { name: "Podman", slug: "podman" },
+            { name: "Linux", slug: "linux" },
+            { name: "New Relic", slug: "newrelic" },
+            { name: "Doppler", noIcon: true },
+            { name: "Cloudflare", slug: "cloudflare" },
+            { name: "Tailscale", slug: "tailscale" },
+        ],
+    },
+];
+---
+
+<section id="skills">
+    <SectionHeading title="Technical Skills" />
+
+    <div class="skills-container">
+        {
+            categories.map((category) => (
+                <div class="skill-group">
+                    <h3 class="group-title scroll-reveal">{category.title}</h3>
+                    <div class="badges-wrapper">
+                        {category.skills.map((skill, index) => (
+                            <div
+                                class="badge-animator scroll-reveal"
+                                style={`--index: ${index}`}
+                            >
+                                <SkillBadge name={skill.name}>
+                                    {!skill.noIcon && (
+                                        <img
+                                            src={`https://cdn.simpleicons.org/${skill.slug}/a1a1aa`}
+                                            alt={`${skill.name} icon`}
+                                            class="simple-icon"
+                                            width="18"
+                                            height="18"
+                                            loading="lazy"
+                                        />
+                                    )}
+                                </SkillBadge>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</section>
+
+<style>
+    .skills-container {
+        display: flex;
+        flex-direction: column;
+        gap: 5rem;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem 0;
+    }
+
+    .skill-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        position: relative;
+    }
+
+    .group-title {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.6rem;
+        color: var(--text-main);
+        margin: 0 0 2rem 0;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+    }
+
+    .group-title::after {
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        left: 50%;
+        transform: translateX(-50%) scaleX(0);
+        width: 30px;
+        height: 3px;
+        background: var(--primary-green);
+        border-radius: 2px;
+        transform-origin: center;
+    }
+
+    @supports (animation-timeline: view()) {
+        .group-title::after {
+            animation: subtitleLine linear both;
+            animation-timeline: view();
+            animation-range: entry 0% cover 30%;
+        }
+    }
+
+    @keyframes subtitleLine {
+        0% {
+            transform: translateX(-50%) scaleX(0);
+        }
+        100% {
+            transform: translateX(-50%) scaleX(1);
+        }
+    }
+
+    .badges-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    /* Enlarge the badges slightly since there are no cards */
+    :global(.badge-animator > span) {
+        padding: 0.6rem 1.4rem !important;
+        font-size: 0.95rem !important;
+        gap: 0.6rem !important;
+        background: rgba(17, 24, 39, 0.6) !important;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        box-shadow: 0 4px 20px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    @media (max-width: 768px) {
+        .skills-container {
+            gap: 4rem;
+        }
+
+        .badges-wrapper {
+            gap: 0.75rem;
+        }
+
+        :global(.badge-animator > span) {
+            padding: 0.5rem 1rem !important;
+            font-size: 0.85rem !important;
+        }
+    }
+</style>

@@ -1,0 +1,48 @@
+---
+interface Props {
+    name: string;
+    category?: string;
+}
+
+const { name } = Astro.props;
+---
+
+<span>
+    <slot />
+    {name}
+</span>
+
+<style>
+    span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.35rem 0.85rem;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        background: var(--surface-color);
+        border: 1px solid var(--border-color);
+        border-radius: 999px;
+        transition: border-color 250ms ease, color 200ms ease, transform 200ms ease;
+    }
+
+    span:hover {
+        border-color: rgba(16, 185, 129, 0.4);
+        color: var(--text-main);
+        transform: translateY(-2px);
+    }
+
+    span :global(svg), span :global(img) {
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+        opacity: 0.7;
+        transition: all 200ms ease;
+    }
+
+    span:hover :global(svg), span:hover :global(img) {
+        opacity: 1;
+        filter: brightness(0) saturate(100%) invert(58%) sepia(50%) saturate(5482%) hue-rotate(130deg) brightness(101%) contrast(98%);
+    }
+</style>

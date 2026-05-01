@@ -1,0 +1,8 @@
+{
+    "code": "COMP 248",
+    "name": "Object-Oriented Programming I",
+    "description": "Foundational programming course covering object-oriented design, control structures, arrays, and class hierarchies in Java.",
+    "relevance": "Built the core programming discipline that every subsequent course and project depends on.",
+    "year": 2022,
+    "semester": "fall"
+}

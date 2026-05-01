@@ -1,0 +1,110 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import SectionHeading from '../SectionHeading.astro';
+
+interface Props {
+    courses: CollectionEntry<'courses'>[];
+}
+
+const { courses } = Astro.props;
+---
+
+<section id="courses">
+    <SectionHeading title="Courses" subtitle="Relevant coursework from my Software Engineering program." />
+
+    <div>
+        {courses.map((course, index) => (
+            <article class="scroll-reveal" style={`--index: ${index}`}>
+                <div>
+                    <header>
+                        <h3>
+                            <span>{course.data.code}</span>
+                            {course.data.name}
+                        </h3>
+                        <time>{course.data.semester} {course.data.year}</time>
+                    </header>
+                    <p>{course.data.relevance}</p>
+                </div>
+            </article>
+        ))}
+    </div>
+</section>
+
+<style>
+    section > div {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    article {
+        background: rgba(17, 24, 39, 0.4);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        overflow: hidden;
+    }
+
+    article:hover {
+        transform: translateY(-6px);
+        border-color: rgba(16, 185, 129, 0.4);
+        box-shadow: 0 15px 35px -15px rgba(16, 185, 129, 0.3);
+    }
+
+    article > div {
+        padding: 1.5rem;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 0.75rem;
+        height: auto;
+        width: auto;
+        position: static;
+    }
+
+    h3 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1rem;
+        color: var(--text-main);
+        margin: 0;
+        font-weight: 600;
+    }
+
+    h3 > span {
+        display: block;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.75rem;
+        color: var(--primary-green);
+        margin-bottom: 0.2rem;
+        font-weight: 400;
+    }
+
+    time {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.7rem;
+        color: var(--text-faint);
+        text-transform: capitalize;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    p {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+
+    @media (max-width: 768px) {
+        section > div {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

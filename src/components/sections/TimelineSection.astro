@@ -1,0 +1,383 @@
+---
+import SectionHeading from "../SectionHeading.astro";
+import SkillBadge from "../ui/SkillBadge.astro";
+
+interface Props {
+    entries: Array<{
+        year: string;
+        title: string;
+        description: string;
+        type: "education" | "project" | "work";
+        ongoing?: boolean;
+    }>;
+}
+
+const { entries } = Astro.props;
+---
+
+<section id="timeline">
+    <SectionHeading title="Timeline" />
+
+    <div class="timeline-container">
+        <div class="timeline-base-line"></div>
+        <div class="timeline-progress-line"></div>
+
+        {
+            entries.map((entry) => (
+                <div class="timeline-entry">
+                    <div class="timeline-date">
+                        <time>{entry.year}</time>
+                    </div>
+
+                    <div class="timeline-marker">
+                        <div class="dot" />
+                        <div class="ring" />
+                    </div>
+
+                    <div class="timeline-content">
+                        <h3>
+                            {entry.title}
+                            {entry.ongoing && (
+                                <span class="ongoing-badge">
+                                    <SkillBadge name="In Progress" />
+                                </span>
+                            )}
+                        </h3>
+                        <p>{entry.description}</p>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</section>
+
+<style>
+    section {
+        width: 100%;
+    }
+
+    .timeline-container {
+        position: relative;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 2rem 0;
+    }
+
+    .timeline-base-line,
+    .timeline-progress-line {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 24px;
+        width: 2px;
+        margin-left: -1px;
+    }
+
+    .timeline-base-line {
+        background: var(--border-color);
+        z-index: 1;
+    }
+
+    .timeline-progress-line {
+        background: var(--primary-green);
+        z-index: 2;
+        transform-origin: top;
+        transform: scaleY(1); /* Fallback */
+    }
+
+    .timeline-entry {
+        display: grid;
+        grid-template-columns: 48px 1fr;
+        gap: 1.5rem;
+        margin-bottom: 4rem;
+        position: relative;
+        z-index: 3;
+    }
+
+    .timeline-entry:last-child {
+        margin-bottom: 0;
+    }
+
+    .timeline-marker {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        display: flex;
+        justify-content: center;
+        margin-top: 4px;
+        position: relative;
+        width: 48px;
+        height: 48px;
+        justify-self: center;
+    }
+
+    .dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--primary-green);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+        box-shadow: 0 0 0 6px var(--bg-color);
+    }
+
+    .ring {
+        position: absolute;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 2px solid var(--primary-green);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3; /* Fallback */
+        z-index: 2;
+    }
+
+    .timeline-date {
+        grid-column: 2;
+        grid-row: 1;
+        align-self: end;
+    }
+
+    .timeline-content {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    time {
+        display: inline-block;
+        font-family: "Space Mono", monospace;
+        font-size: 1.1rem;
+        color: var(--primary-green);
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        line-height: 1.2;
+    }
+
+    h3 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.25rem;
+        color: var(--text-main);
+        margin: 0 0 0.5rem 0;
+        font-weight: 600;
+        line-height: 1.2;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .ongoing-badge {
+        display: inline-flex;
+    }
+
+    .ongoing-badge :global(span) {
+        border-color: rgba(16, 185, 129, 0.4) !important;
+        color: var(--primary-green) !important;
+        background: rgba(16, 185, 129, 0.05) !important;
+    }
+
+    .ongoing-badge :global(span:hover) {
+        border-color: rgba(16, 185, 129, 0.8) !important;
+        background: rgba(16, 185, 129, 0.1) !important;
+        transform: translateY(-2px);
+    }
+
+    p {
+        font-family: "Space Mono", monospace;
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    @media (min-width: 768px) {
+        .timeline-base-line,
+        .timeline-progress-line {
+            left: 50%;
+        }
+
+        .timeline-entry {
+            grid-template-columns: 1fr 60px 1fr;
+            gap: 2rem;
+        }
+
+        .timeline-marker {
+            grid-column: 2;
+            grid-row: 1;
+            margin-top: 0;
+            align-self: start;
+        }
+
+        .timeline-entry:nth-child(odd) .timeline-date {
+            grid-column: 1;
+            grid-row: 1;
+            text-align: right;
+            align-self: start;
+            margin-top: 12px;
+        }
+        .timeline-entry:nth-child(odd) .timeline-content {
+            grid-column: 3;
+            grid-row: 1;
+            text-align: left;
+            align-self: start;
+            margin-top: 10px;
+        }
+
+        .timeline-entry:nth-child(even) .timeline-date {
+            grid-column: 3;
+            grid-row: 1;
+            text-align: left;
+            align-self: start;
+            margin-top: 12px;
+        }
+        .timeline-entry:nth-child(even) .timeline-content {
+            grid-column: 1;
+            grid-row: 1;
+            text-align: right;
+            align-self: start;
+            margin-top: 10px;
+        }
+        
+        .timeline-entry:nth-child(even) .timeline-content h3 {
+            justify-content: flex-end;
+        }
+    }
+
+    /* CSS Scroll-Driven Animations */
+    @supports (animation-timeline: view()) {
+        .timeline-container {
+            view-timeline-name: --timeline;
+        }
+
+        .timeline-progress-line {
+            animation: scaleLine linear both;
+            animation-timeline: --timeline;
+            animation-range: cover 0% cover 100%;
+        }
+
+        .timeline-entry {
+            view-timeline-name: --entry;
+        }
+
+        .timeline-date,
+        .timeline-content,
+        .ring {
+            opacity: 0;
+        }
+
+        .timeline-entry:nth-child(odd) .timeline-date {
+            animation: slideInOutLeft linear both;
+            animation-timeline: --entry;
+            animation-range: cover 0% cover 100%;
+        }
+        .timeline-entry:nth-child(odd) .timeline-content {
+            animation: slideInOutRight linear both;
+            animation-timeline: --entry;
+            animation-range: cover 0% cover 100%;
+        }
+
+        .timeline-entry:nth-child(even) .timeline-date {
+            animation: slideInOutRight linear both;
+            animation-timeline: --entry;
+            animation-range: cover 0% cover 100%;
+        }
+        .timeline-entry:nth-child(even) .timeline-content {
+            animation: slideInOutLeft linear both;
+            animation-timeline: --entry;
+            animation-range: cover 0% cover 100%;
+        }
+
+        .timeline-entry .ring {
+            animation: scrollRing linear both;
+            animation-timeline: --entry;
+            animation-range: cover 0% cover 100%;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-entry .timeline-date,
+            .timeline-entry .timeline-content {
+                animation: slideInOutRight linear both !important;
+                animation-timeline: --entry !important;
+                animation-range: cover 0% cover 100% !important;
+            }
+        }
+    }
+
+    @keyframes scaleLine {
+        0% {
+            transform: scaleY(0);
+        }
+        100% {
+            transform: scaleY(1);
+        }
+    }
+
+    @keyframes slideInOutLeft {
+        0% {
+            opacity: 0;
+            transform: translateX(-40px);
+        }
+        25% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        75% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        100% {
+            opacity: 0;
+            transform: translateX(-40px);
+        }
+    }
+
+    @keyframes slideInOutRight {
+        0% {
+            opacity: 0;
+            transform: translateX(40px);
+        }
+        25% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        75% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        100% {
+            opacity: 0;
+            transform: translateX(40px);
+        }
+    }
+
+    @keyframes scrollRing {
+        0% {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+        }
+        25% {
+            transform: translate(-50%, -50%) scale(1.2);
+            opacity: 0.5;
+        }
+        35% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.3;
+        }
+        65% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.3;
+        }
+        75% {
+            transform: translate(-50%, -50%) scale(1.2);
+            opacity: 0.5;
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+        }
+    }
+</style>

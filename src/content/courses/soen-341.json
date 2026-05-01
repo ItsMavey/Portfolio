@@ -1,0 +1,8 @@
+{
+    "code": "SOEN 341",
+    "name": "Software Process",
+    "description": "Agile methodologies, version control workflows, CI/CD pipelines, and team-based software development using Scrum.",
+    "relevance": "Practiced shipping code in sprints with a real team, using Git branching strategies and code reviews.",
+    "year": 2024,
+    "semester": "winter"
+}

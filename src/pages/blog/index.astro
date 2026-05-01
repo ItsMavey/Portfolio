@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/layout.astro';
-import Nodes from '../../components/layout/node.js';
+import Nodes from '../../components/layout/node.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import { getCollection } from 'astro:content';
 
@@ -9,20 +9,23 @@ const posts = (await getCollection('blog')).sort(
 );
 ---
 
-<Layout title="Blog - Adam Ousmer">
+<Layout title="Blog - Adam Ousmer" description="Project writeups, process breakdowns, and technical deep dives.">
         <Nodes/>
 
     <header class="blog-header">
-        <div class="header-content" data-parallax="0.3">
-            <h1>My Blog</h1>
-            <p>Projects, Processes and deep dives.</p>
+        <div class="header-content parallax" style="--parallax-speed: 0.3">
+            <div class="page-reveal">
+                <h1>My Blog</h1>
+                <span class="page-title-line"></span>
+            </div>
+            <p class="page-stagger">Projects, Processes and deep dives.</p>
         </div>
     </header>
 
     <main class="container">
         <div class="posts-grid">
             {posts.map((post) => (
-                <a href={`/blog/${post.slug}`} class="post-card group">
+                <a href={`/blog/${post.slug}`} class="post-card group page-stagger">
                     <div class="card-image-container">
                         {post.data.heroImage && (
                             <div class="card-image" style={`background-image: url('${post.data.heroImage}')`}></div>
@@ -62,6 +65,9 @@ const posts = (await getCollection('blog')).sort(
 
     .header-content {
         z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .header-content h1 {
@@ -202,3 +208,5 @@ const posts = (await getCollection('blog')).sort(
         }
     }
 </style>
+
+<script src="../../scripts/page-entrance.js"></script>
