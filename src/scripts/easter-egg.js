@@ -6,12 +6,12 @@ let lastSeedTime = 0;
 document.addEventListener("keydown", (e) => {
     // If we're already in bagel mode, we could either let them do it again or ignore.
     // Let's let them trigger it multiple times for fun.
-    
+
     // ignore special keys
     if (e.key.length !== 1) return;
 
     typedText += e.key.toLowerCase();
-    
+
     // keep only the last N characters
     if (typedText.length > targetWord.length) {
         typedText = typedText.slice(-targetWord.length);
@@ -22,9 +22,25 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
+// Clean up all bagel mode effects before Astro swaps the page
+document.addEventListener("astro:before-preparation", cleanupBagelMode);
+
+function cleanupBagelMode() {
+    isBagelMode = false;
+
+    // Remove the custom cursor class from body
+    document.body.classList.remove("bagel-cursor");
+
+    // Remove the mousemove listener so it doesn't stack on re-trigger
+    document.removeEventListener("mousemove", spawnSesameSeed);
+
+    // Instantly remove any lingering sesame seeds and bagel drops from the DOM
+    document.querySelectorAll(".sesame-seed, .bagel-drop").forEach((el) => el.remove());
+}
+
 function triggerBagelMode() {
     isBagelMode = true;
-    
+
     // 1. Enable bagel cursor
     document.body.classList.add("bagel-cursor");
 
@@ -42,14 +58,14 @@ function rainBagels() {
             const bagel = document.createElement("div");
             bagel.classList.add("bagel-drop");
             bagel.innerText = "🥯";
-            
+
             // Random horizontal start position
             bagel.style.left = Math.random() * 100 + "vw";
-            
+
             // Randomize duration slightly
             const duration = 2 + Math.random() * 2;
             bagel.style.animationDuration = `${duration}s`;
-            
+
             // Randomize font size
             const size = 1.5 + Math.random() * 2;
             bagel.style.fontSize = `${size}rem`;
@@ -66,7 +82,7 @@ function rainBagels() {
 
 function spawnSesameSeed(e) {
     if (!isBagelMode) return;
-    
+
     const now = Date.now();
     // throttle seed spawning to every 50ms
     if (now - lastSeedTime < 50) return;
@@ -74,11 +90,11 @@ function spawnSesameSeed(e) {
 
     const seed = document.createElement("div");
     seed.classList.add("sesame-seed");
-    
+
     // Adjust position so it spawns near the cursor tip
     seed.style.left = e.clientX + "px";
     seed.style.top = e.clientY + "px";
-    
+
     // Randomize rotation
     const rot = Math.random() * 360;
     seed.style.setProperty("--rot", `${rot}deg`);
