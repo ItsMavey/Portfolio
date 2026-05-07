@@ -29,6 +29,14 @@ const { projects } = Astro.props;
                         </div>
 
                         <nav>
+                            {project.data.websiteUrl && (
+                                <a href={project.data.websiteUrl} rel="noopener noreferrer" target="_blank" aria-label="Visit website">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                    </svg>
+                                </a>
+                            )}
                             {project.data.githubUrl && (
                                 <a href={project.data.githubUrl} rel="noopener noreferrer" target="_blank" aria-label="View on GitHub">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

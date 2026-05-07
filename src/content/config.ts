@@ -18,6 +18,7 @@ const projectsCollection = defineCollection({
         year: z.number(),
         tags: z.array(z.string()),
         githubUrl: z.string().url().optional(),
+        websiteUrl: z.string().url().optional(),
         blogSlug: z.string().optional(),
         featured: z.boolean().default(false),
     }),
